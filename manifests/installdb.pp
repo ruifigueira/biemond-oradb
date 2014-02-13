@@ -47,6 +47,7 @@ define oradb::installdb( $version                 = undef,
                          $zipExtract              = true,
                          $puppetDownloadMntPoint  = undef,
                          $remoteFile              = true,
+                         $logoutput               = 'on_failure',
 )
 {
   # check if the oracle software already exists
@@ -71,7 +72,7 @@ define oradb::installdb( $version                 = undef,
     Exec { path   => $execPath,
       user        => $user,
       group       => $group,
-      logoutput   => true,
+      logoutput   => $logoutput,
     }
 
     File {
